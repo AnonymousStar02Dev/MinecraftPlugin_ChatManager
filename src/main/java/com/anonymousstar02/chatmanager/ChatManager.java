@@ -9,10 +9,10 @@ import com.anonymousstar02.chatmanager.events.NotPermissionCommand;
 import com.anonymousstar02.chatmanager.events.PlayerChatEvent;
 import com.anonymousstar02.chatmanager.events.PlayerQuitEvent;
 import com.anonymousstar02.chatmanager.utils.Variables;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.simpleyaml.configuration.file.YamlFile;
 
-import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.permission.Permission;
 
 public class ChatManager extends JavaPlugin{
@@ -39,18 +39,14 @@ public class ChatManager extends JavaPlugin{
 
     //Vault permission
     public Permission permission;
-    public Chat chat;
 
     //Event variables
     public HashMap<UUID,Long> cooldown;
     public HashMap<UUID,String> repeat;
 
     @Override
-    public void onLoad() {}
-
-    @Override
     public void onEnable() {
-        permission = getServer().getServicesManager().getRegistration(Permission.class).getProvider();
+        registerVaultsAPI();
         cooldown = new HashMap<>();
         repeat = new HashMap<>();
         registerConfigs();
@@ -111,10 +107,16 @@ public class ChatManager extends JavaPlugin{
     }
 
     //metodo che registra gli eventi del plugin
-    public void registerEvents() {
+    private void registerEvents() {
         this.getServer().getPluginManager().registerEvents(new PlayerChatEvent(this), this);
         this.getServer().getPluginManager().registerEvents(new PlayerQuitEvent(this), this);
         this.getServer().getPluginManager().registerEvents(new NotPermissionCommand(this), this);
+    }
+
+    private void registerVaultsAPI(){
+        RegisteredServiceProvider<Permission> rsp = getServer().getServicesManager().getRegistration(Permission.class);
+        if(rsp == null) this.getServer().getPluginManager().disablePlugin(this);
+        else permission = rsp.getProvider();
     }
 
 }
