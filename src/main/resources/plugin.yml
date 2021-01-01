@@ -1,0 +1,18 @@
+name: ChatManager
+version: ${project.version}
+main: com.anonymousstar02.chatmanager.ChatManager
+api-version: 1.16
+depend: [ Vault ]
+authors: [ AnonymousStar02 ]
+description: Manage your server chat
+commands:
+  mutechat:
+    description: mute global chat
+  unmutechat:
+    description: unmute global chat
+  clearchat:
+    description: clear own,player,server chat
+  cm-reload:
+    description: reload config
+  opothers:
+    descriptions: op and deop other player

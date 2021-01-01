@@ -1,0 +1,30 @@
+###################################################################################
+#                                                                                 #
+#                                  Chat Manager                                   #
+#                           Created By AnonymousStar02                            #
+#                                                                                 #
+###################################################################################
+
+# Permission to allowed chat --> chatmanager.chat.allow
+# Permission to clearchat command --> chatmanager.cmd.clearchat
+# Permission to clear own chat --> chatmanager.cmd.clearchat.me
+# Permission to clear other palyer chat --> chatmanager.cmd.clearchat.others
+# Permissions to clear server chat --> chatmanager.cmd.clearchat.server
+# Permission to mute command --> chatmanager.cmd.mutechat
+# Permission to unmute command --> chatmanager.cmd.unmutechat
+# Permission to cm-reload command --> chatmanager.cmd.cmreload
+
+# Permission to bypass chat mute --> chatmanager.bypass.mute
+# Permission to bypass anti repeat --> chatmanager.bypass.antirepeat
+# Permission to bypass anti flood --> chatmanager.bypass.antiflood
+# Permission to bypass anti ip --> chatmanager.bypass.antiip
+# Permission to bypass anti url --> chatmanager.bypass.antiurl
+# Permission to bypass anti spam --> chatmanager.bypass.antiswear
+# Permission to bypass anti caps --> chatmanager.bypass.anticaps
+# Permission to bypass whitelist command limitation --> chatmanager.bypass.commandslimitation
+
+#Plugin support permissions:
+#  - chatmanager.*
+#  - chatmanager.cmd.*
+#  - chatmanager.cmd.clearchat.*
+#  - chatmanager.bypass.*

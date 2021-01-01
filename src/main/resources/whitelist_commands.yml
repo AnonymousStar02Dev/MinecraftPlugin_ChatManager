@@ -1,0 +1,5 @@
+commands:
+  - "minecraft:pl"
+  - "minecraft:plugins"
+  - "pl"
+  - "plugins"
