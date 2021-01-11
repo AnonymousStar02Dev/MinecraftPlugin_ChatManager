@@ -2,11 +2,11 @@ package com.anonymousstar02.chatmanager.utils;
 
 import com.anonymousstar02.chatmanager.ChatManager;
 
-import java.util.List;
+import java.util.Locale;
 
 public class Message {
-	
-	public static boolean isIp(String message) {
+
+	public static boolean containsIp(String message) {
 		String tmp = "([01]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])";
 		String ip = tmp + "\\." + tmp + "\\." + tmp + "\\." + tmp;
 		String port = "(:[0-9]{0,5}$)?";
@@ -16,13 +16,29 @@ public class Message {
 		ip = ip.toLowerCase();
 		port = port.toLowerCase();
 		
-		if((Replace.replaceNoIpChar(message).matches(ip+port))){
+		if((Utils.removeNoIpChar(message).matches(ip+port))){
 			return true;
 		}
 		return false;
 	}
+
+	public static String containsSwearWords(String message, ChatManager plugin){
+		String msg_copy = Utils.removeNoAlphabetChars(message);
+		msg_copy = msg_copy.toLowerCase();
+
+		if(!plugin.words_list.isEmpty()){
+
+			for(String word : plugin.words_list){
+				if(msg_copy.contains(word)){
+					return word;
+				}
+			}
+		}
+
+		return "null";
+	}
 	
-	public static boolean isUrl(String message) {
+	public static boolean containsUrl(String message) {
 		String[] words = message.split("\\s+");
 		for(String word : words) {
 			if(word.matches("(((http?|https|ftp|file)://)?((W|w){3}.)?([a-zA-Z0-9]+\\.)(([a-zA-Z0-9]+\\.){0,16})([a-zA-Z]+)(/(\\w|\\W|\\d|\\D)+){0,16})")) {
@@ -30,23 +46,6 @@ public class Message {
 			}
 		}
 		return false;
-	}
-	
-	public static String isSpam(String message, ChatManager plugin) {
-		String check = "null";
-		message = message.toLowerCase();
-		List<String> words = plugin.blacklist_words.getStringList(Variables.Blacklists.WORDS.toString());
-		if(!words.isEmpty()) {
-			for(String tmp : words) {
-				message = Replace.removeDoubleChar(message, tmp.toLowerCase());
-				if((Replace.replaceNoAlphabetChar(message).contains(tmp.toLowerCase())) 
-						|| (Replace.replaceNumberInAlphabetChar(message).contains(tmp.toLowerCase()))){
-						check = tmp;
-						break;
-				}
-			}
-		}
-		return check;
 	}
 
 }

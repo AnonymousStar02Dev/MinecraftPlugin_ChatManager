@@ -18,8 +18,7 @@ public class Variables {
 		OP_GUARD,
 		OP_GUARD_PASSWORD,
 		PERMISSION_NEEDED,
-		SEND_TIME,
-		TAB_COMPLETE;
+		SEND_TIME;
 		
 		public String toString() {
 			String name = name();
@@ -39,7 +38,6 @@ public class Variables {
 		CLEARED_OWN_CHAT,
 		CLEARED_PLAYER_CHAT,
 		CLEARED_SERVER_CHAT,
-		CM_ADDWORD_CORRECT_USAGE,
 		DEOP_CORRECT_USAGE,
 		DEOP_PASSWORD_SUCCESS,
 		GLOBAL_CHAT_MUTED,

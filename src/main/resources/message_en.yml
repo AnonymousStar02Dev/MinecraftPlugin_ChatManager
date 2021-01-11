@@ -33,9 +33,6 @@ cleared-player-chat: "&aYou clear chat of &6%player%"
 # Server message when server chat are cleared
 cleared-server-chat: "&6%player% &acleared server chat"
 
-# Command "cm-addword" correct usage
-cm-addword-correct-usage: "&cCorrect Usage: &e/cm-addword <word>"
-
 # Deop correct usage
 deop-correct-usage: "&cCorrect Usage: /deop <password>"
 

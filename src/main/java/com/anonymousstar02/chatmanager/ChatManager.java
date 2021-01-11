@@ -2,10 +2,11 @@ package com.anonymousstar02.chatmanager;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 import com.anonymousstar02.chatmanager.commands.*;
-import com.anonymousstar02.chatmanager.events.NotPermissionCommand;
+import com.anonymousstar02.chatmanager.events.PlayerCommandPreProcess;
 import com.anonymousstar02.chatmanager.events.PlayerChatEvent;
 import com.anonymousstar02.chatmanager.events.PlayerQuitEvent;
 import com.anonymousstar02.chatmanager.utils.Variables;
@@ -44,6 +45,9 @@ public class ChatManager extends JavaPlugin{
     public HashMap<UUID,Long> cooldown;
     public HashMap<UUID,String> repeat;
 
+    //Config variables
+    public List<String> words_list;
+
     @Override
     public void onEnable() {
         registerVaultsAPI();
@@ -58,8 +62,8 @@ public class ChatManager extends JavaPlugin{
     private void registerCommands() {
         this.getCommand("cm-reload").setExecutor(new Reload(this));
         this.getCommand("clearchat").setExecutor(new ClearChat(this));
-        this.getCommand("mutechat").setExecutor(new Mute(this));
-        this.getCommand("unmutechat").setExecutor(new Unmute(this));
+        this.getCommand("mutechat").setExecutor(new MuteChat(this));
+        this.getCommand("unmutechat").setExecutor(new UnMuteChat(this));
         this.getCommand("opothers").setExecutor(new OpOther(this));
     }
 
@@ -94,6 +98,7 @@ public class ChatManager extends JavaPlugin{
             if(!blacklist_words_file.exists()) saveResource(blacklist_words_file_name,false);
             blacklist_words = new YamlFile(blacklist_words_file);
             blacklist_words.loadWithComments();
+            words_list = blacklist_words.getStringList(Variables.Blacklists.WORDS.toString());
 
             whitelist_commands_file = new File(this.getDataFolder(),whitelist_commands_file_name);
             if(!whitelist_commands_file.exists()) saveResource(whitelist_commands_file_name,false);
@@ -110,7 +115,7 @@ public class ChatManager extends JavaPlugin{
     private void registerEvents() {
         this.getServer().getPluginManager().registerEvents(new PlayerChatEvent(this), this);
         this.getServer().getPluginManager().registerEvents(new PlayerQuitEvent(this), this);
-        this.getServer().getPluginManager().registerEvents(new NotPermissionCommand(this), this);
+        this.getServer().getPluginManager().registerEvents(new PlayerCommandPreProcess(this), this);
     }
 
     private void registerVaultsAPI(){
