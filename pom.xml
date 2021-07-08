@@ -6,14 +6,14 @@
 
     <groupId>com.anonymousstar02</groupId>
     <artifactId>ChatManager</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>2.0</version>
     <packaging>jar</packaging>
 
     <name>ChatManager</name>
 
     <description>Manage your server chat</description>
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -66,7 +66,7 @@
         </repository>
         <!-- Jitpack -->
         <repository>
-            <id>jitpack</id>
+            <id>jitpack.io</id>
             <url>https://jitpack.io/</url>
         </repository>
     </repositories>
@@ -81,7 +81,7 @@
         </dependency>
         <!-- Simple YAML -->
         <dependency>
-            <groupId>me.carleslc.Simple-YAML</groupId>
+            <groupId>com.github.Carleslc.Simple-YAML</groupId>
             <artifactId>Simple-Yaml</artifactId>
             <version>1.7.2</version>
         </dependency>

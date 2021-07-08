@@ -45,4 +45,4 @@ op-guard-password: anonymousstar02
 permission-needed: true
 
 # How many second player attend for send message?
-send-time: 3
+send-time: 3.0

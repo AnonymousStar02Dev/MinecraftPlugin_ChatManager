@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="MinecraftPlugin_ChatManager" target="1.8" />
+      <module name="MinecraftPlugin_ChatManager" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

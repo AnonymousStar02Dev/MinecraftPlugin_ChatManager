@@ -8,13 +8,13 @@ import org.bukkit.entity.Player;
 
 public interface Permission {
 	
-	public default boolean hasPermissions(CommandSender sender, ChatManager plugin, String... perms) {
-		return hasPermissions((Player)sender,plugin,perms);
+	default boolean hasPermissions(CommandSender sender, net.milkbowl.vault.permission.Permission permission, String... perms) {
+		return hasPermissions((Player)sender,permission,perms);
 	}
 	
-	public default boolean hasPermissions(Player player,ChatManager plugin,String... perms) {
+	default boolean hasPermissions(Player player, net.milkbowl.vault.permission.Permission permission, String... perms) {
 		for(String perm : perms) {
-			if(plugin.permission.has(player, perm)) return true;
+			if(permission.has(player, perm)) return true;
 		}
 		return false;
 	}

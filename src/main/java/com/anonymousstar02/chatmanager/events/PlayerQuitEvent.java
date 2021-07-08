@@ -6,7 +6,7 @@ import org.bukkit.event.Listener;
 
 public class PlayerQuitEvent implements Listener{
 	
-	private ChatManager plugin;
+	private final ChatManager plugin;
 	
 	public PlayerQuitEvent(ChatManager plugin) {
 		this.plugin = plugin;
@@ -14,8 +14,8 @@ public class PlayerQuitEvent implements Listener{
 	
 	@EventHandler
 	public void onQuit(org.bukkit.event.player.PlayerQuitEvent event) {
-		if(plugin.cooldown.containsKey(event.getPlayer().getUniqueId())) plugin.cooldown.remove(event.getPlayer().getUniqueId());
-		if(plugin.repeat.containsKey(event.getPlayer().getUniqueId())) plugin.repeat.remove(event.getPlayer().getUniqueId());
+		if(plugin.getCooldownMap().containsKey(event.getPlayer().getUniqueId())) plugin.getCooldownMap().remove(event.getPlayer().getUniqueId());
+		if(plugin.getRepeatMap().containsKey(event.getPlayer().getUniqueId())) plugin.getRepeatMap().remove(event.getPlayer().getUniqueId());
 	}
 
 }

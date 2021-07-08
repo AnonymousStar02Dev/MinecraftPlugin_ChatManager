@@ -1,6 +1,6 @@
 package com.anonymousstar02.chatmanager.commands.api;
 
-public class Command {
+public final class Command {
 	
 	/**
 	 * 
@@ -30,8 +30,7 @@ public class Command {
 	}
 	
 	public static boolean isCommand(String str) {
-		if(str.startsWith(Command.prefix)) return true;
-		return false;
+		return str.startsWith(Command.prefix);
 	}
 
 }

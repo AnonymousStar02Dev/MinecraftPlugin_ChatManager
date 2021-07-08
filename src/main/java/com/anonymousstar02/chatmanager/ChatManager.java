@@ -1,52 +1,68 @@
 package com.anonymousstar02.chatmanager;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
-
 import com.anonymousstar02.chatmanager.commands.*;
-import com.anonymousstar02.chatmanager.events.PlayerCommandPreProcess;
+import com.anonymousstar02.chatmanager.configuration.ConfigLoader;
+import com.anonymousstar02.chatmanager.configuration.Configs;
 import com.anonymousstar02.chatmanager.events.PlayerChatEvent;
+import com.anonymousstar02.chatmanager.events.PlayerCommandPreProcess;
 import com.anonymousstar02.chatmanager.events.PlayerQuitEvent;
-import com.anonymousstar02.chatmanager.utils.Variables;
+import com.anonymousstar02.chatmanager.utils.enums.Config;
+import net.milkbowl.vault.permission.Permission;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.simpleyaml.configuration.file.YamlFile;
 
-import net.milkbowl.vault.permission.Permission;
+import java.io.File;
+import java.util.HashMap;
+import java.util.UUID;
 
-public class ChatManager extends JavaPlugin{
+public final class ChatManager extends JavaPlugin{
 
     //Yaml file
-    public YamlFile config;
-    public YamlFile message;
-    public YamlFile blacklist_words;
-    public YamlFile whitelist_commands;
-
-    //Yaml java file
-    public File config_file;
-    public File message_file;
-    public File permissions_file;
-    public File blacklist_words_file;
-    public File whitelist_commands_file;
-
-    //File name
-    public String config_file_name = "config.yml";
-    public String message_file_name = "message_{locale}.yml";
-    public String permissions_file_name = "permissions.yml";
-    public String blacklist_words_file_name = "blacklist_words.yml";
-    public String whitelist_commands_file_name = "whitelist_commands.yml";
+    private YamlFile config;
+    private YamlFile message;
+    private YamlFile blacklist_words;
+    private YamlFile whitelist_commands;
+    private YamlFile allowed_urls;
 
     //Vault permission
-    public Permission permission;
+    private Permission permission;
 
     //Event variables
-    public HashMap<UUID,Long> cooldown;
-    public HashMap<UUID,String> repeat;
+    private HashMap<UUID,Long> cooldown;
+    private HashMap<UUID,String> repeat;
 
-    //Config variables
-    public List<String> words_list;
+    public YamlFile getMainConfig(){
+        return config;
+    }
+
+    public YamlFile getMessagesConfig(){
+        return message;
+    }
+
+    public YamlFile getBlacklistWordsConfig(){
+        return blacklist_words;
+    }
+
+    public YamlFile getWhitelistCommandsConfig(){
+        return whitelist_commands;
+    }
+
+    public YamlFile getAllowedUrlsConfig(){
+        return allowed_urls;
+    }
+
+    public Permission getPermissionService(){
+        return permission;
+    }
+
+    public HashMap<UUID,Long> getCooldownMap() {
+        return cooldown;
+    }
+
+    public HashMap<UUID,String> getRepeatMap(){
+        return repeat;
+    }
 
     @Override
     public void onEnable() {
@@ -70,40 +86,14 @@ public class ChatManager extends JavaPlugin{
     //metodo che registra i config del plugin
     public void registerConfigs() {
         try {
-            //load config.yml file
-            config_file = new File(this.getDataFolder(),config_file_name);
-            if(!config_file.exists()) saveResource(config_file_name,false);
-            config = new YamlFile(config_file);
-            config.loadWithComments();
+            config = ConfigLoader.loadConfig(Configs.CONFIG.toString(),this);
+            message = ConfigLoader.loadMessages(Configs.MESSAGES.toString(),config.getString(Config.LOCALE.toString()),this);
+            blacklist_words = ConfigLoader.loadConfig(Configs.BLOCKED_WORDS.toString(), this);
+            whitelist_commands = ConfigLoader.loadConfig(Configs.WHITELIST_COMMANDS.toString(), this);
+            allowed_urls = ConfigLoader.loadConfig(Configs.ALLOWED_URLS.toString(), this);
 
-            //load message.yml file
-            message_file = new File(this.getDataFolder(),message_file_name.replace("{locale}", config.getString(Variables.Config.LOCALE.toString())));
-            if(!message_file.exists()) {
-                switch(config.getString(Variables.Config.LOCALE.toString())) {
-                    case "it":
-                    case "en":
-                        saveResource(message_file_name.replace("{locale}", config.getString(Variables.Config.LOCALE.toString())),false);
-                        break;
-                    default:
-                        saveResource("message_en.yml",false);
-                }
-            }
-            message = new YamlFile(message_file);
-            message.loadWithComments();
-
-            permissions_file = new File(this.getDataFolder(),permissions_file_name);
-            if(!permissions_file.exists()) saveResource(permissions_file_name,false);
-
-            blacklist_words_file = new File(this.getDataFolder(),blacklist_words_file_name);
-            if(!blacklist_words_file.exists()) saveResource(blacklist_words_file_name,false);
-            blacklist_words = new YamlFile(blacklist_words_file);
-            blacklist_words.loadWithComments();
-            words_list = blacklist_words.getStringList(Variables.Blacklists.WORDS.toString());
-
-            whitelist_commands_file = new File(this.getDataFolder(),whitelist_commands_file_name);
-            if(!whitelist_commands_file.exists()) saveResource(whitelist_commands_file_name,false);
-            whitelist_commands = new YamlFile(whitelist_commands_file);
-            whitelist_commands.loadWithComments();
+            File permissions_file = new File(this.getDataFolder(),Configs.PERMISSIONS.toString());
+            if(!permissions_file.exists()) saveResource(Configs.PERMISSIONS.toString(),false);
 
         }catch(Exception e) {
             e.printStackTrace();
