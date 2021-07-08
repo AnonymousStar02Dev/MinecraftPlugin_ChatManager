@@ -1,9 +1,7 @@
 package com.anonymousstar02.chatmanager.utils;
 
-import com.anonymousstar02.chatmanager.ChatManager;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
 
 
 public interface Permission {

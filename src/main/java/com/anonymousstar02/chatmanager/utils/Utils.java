@@ -2,30 +2,6 @@ package com.anonymousstar02.chatmanager.utils;
 
 public class Utils {
 
-	public static String removeNoAlphabetChars(String message){
-		char[] array = message.toCharArray();
-		for(int x = 0;x < array.length;x++){
-			if(!Utils.isAlphabetChar(array[x])){
-				array[x] = ' ';
-			}
-		}
-		return Utils.removeSpace(String.valueOf(array));
-	}
-
-	public static String removeNoIpChar(String message) {
-		char[] chars = message.toCharArray();
-		
-		for(int x = 0;x < chars.length;x++) {
-			if((!Utils.isNumber(chars[x])) && (!(chars[x] == '.')) && (!(chars[x] == ':'))) chars[x] = ' ';
-		}
-		return Utils.removeSpace(String.valueOf(chars));
-	}
-	
-	public static String removeSpace(String str) {
-		str = str.replaceAll(" ", "");
-		return str;
-	}
-	
 	private static boolean isAlphabetChar(char ch) {
 		switch(ch){
 			case 'a':
@@ -59,7 +35,7 @@ public class Utils {
 				return false;
 		}
 	}
-	
+
 	private static boolean isNumber(char ch) {
 		switch(ch) {
 			case '0':
@@ -76,6 +52,30 @@ public class Utils {
 			default:
 				return false;
 		}
+	}
+
+	public static String removeNoAlphabetChars(String message){
+		char[] array = message.toCharArray();
+		for(int x = 0;x < array.length;x++){
+			if(!Utils.isAlphabetChar(array[x])){
+				array[x] = ' ';
+			}
+		}
+		return Utils.removeSpace(String.valueOf(array));
+	}
+
+	public static String removeNoIpChar(String message) {
+		char[] chars = message.toCharArray();
+		
+		for(int x = 0;x < chars.length;x++) {
+			if((!Utils.isNumber(chars[x])) && (!(chars[x] == '.')) && (!(chars[x] == ':'))) chars[x] = ' ';
+		}
+		return Utils.removeSpace(String.valueOf(chars));
+	}
+	
+	public static String removeSpace(String str) {
+		str = str.replaceAll(" ", "");
+		return str;
 	}
 	
 }

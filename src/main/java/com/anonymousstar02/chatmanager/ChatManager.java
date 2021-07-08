@@ -18,19 +18,26 @@ import java.util.UUID;
 
 public final class ChatManager extends JavaPlugin{
 
-    //Yaml file
+    private Permission permission;
+    private HashMap<UUID,Long> cooldown;
+    private HashMap<UUID,String> repeat;
     private YamlFile config;
     private YamlFile message;
     private YamlFile blacklist_words;
     private YamlFile whitelist_commands;
     private YamlFile allowed_urls;
 
-    //Vault permission
-    private Permission permission;
+    public YamlFile getAllowedUrlsConfig(){
+        return allowed_urls;
+    }
 
-    //Event variables
-    private HashMap<UUID,Long> cooldown;
-    private HashMap<UUID,String> repeat;
+    public YamlFile getBlacklistWordsConfig(){
+        return blacklist_words;
+    }
+
+    public HashMap<UUID,Long> getCooldownMap() {
+        return cooldown;
+    }
 
     public YamlFile getMainConfig(){
         return config;
@@ -40,28 +47,14 @@ public final class ChatManager extends JavaPlugin{
         return message;
     }
 
-    public YamlFile getBlacklistWordsConfig(){
-        return blacklist_words;
+    public Permission getPermissionService(){ return permission; }
+
+    public HashMap<UUID,String> getRepeatMap(){
+        return repeat;
     }
 
     public YamlFile getWhitelistCommandsConfig(){
         return whitelist_commands;
-    }
-
-    public YamlFile getAllowedUrlsConfig(){
-        return allowed_urls;
-    }
-
-    public Permission getPermissionService(){
-        return permission;
-    }
-
-    public HashMap<UUID,Long> getCooldownMap() {
-        return cooldown;
-    }
-
-    public HashMap<UUID,String> getRepeatMap(){
-        return repeat;
     }
 
     @Override
@@ -74,7 +67,6 @@ public final class ChatManager extends JavaPlugin{
         registerCommands();
     }
 
-    //metodo che registra i comandi del plugin
     private void registerCommands() {
         this.getCommand("cm-reload").setExecutor(new Reload(this));
         this.getCommand("clearchat").setExecutor(new ClearChat(this));
@@ -83,7 +75,6 @@ public final class ChatManager extends JavaPlugin{
         this.getCommand("opothers").setExecutor(new OpOther(this));
     }
 
-    //metodo che registra i config del plugin
     public void registerConfigs() {
         try {
             config = ConfigLoader.loadConfig(Configs.CONFIG.toString(),this);
@@ -101,7 +92,6 @@ public final class ChatManager extends JavaPlugin{
         }
     }
 
-    //metodo che registra gli eventi del plugin
     private void registerEvents() {
         this.getServer().getPluginManager().registerEvents(new PlayerChatEvent(this), this);
         this.getServer().getPluginManager().registerEvents(new PlayerQuitEvent(this), this);
