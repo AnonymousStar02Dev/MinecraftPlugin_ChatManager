@@ -1,0 +1,48 @@
+###################################################################################
+#                                                                                 #
+#                                  Chat Manager                                   #
+#                           Created By AnonymousStar02                            #
+#                                                                                 #
+###################################################################################
+
+#if you have problem, delete and reload plugin
+#Insert command in whitelist_commands.yml that user can't execute'
+
+# Anti Caps enable/disable --> true/false
+anti-caps: true
+
+# Anti Flood enable/disable --> true/false
+anti-flood: true
+
+# Anti Ip (numeric ip) enable/disable --> true/false
+anti-ip: true
+
+# Anti Repeat same message enable/disable --> true/false
+anti-repeat: true
+
+# Anti Spam(add words in blacklist words yml) enable/disable --> true/false
+anti-swear: true
+
+# Anti Url enable/disable --> true/false
+anti-url: true
+
+# Enable Send custom message for command that user not have permissions(example /plugins)
+commands-limitation: true
+
+# Insert the language (it, en)
+locale: en
+
+# Plugin variables, not modify
+mute-chat: false
+
+# Enable op guard to use password to access on op
+op-guard: true
+
+# Set this password for op guard
+op-guard-password: anonymousstar02
+
+# Needed permittion to write on chat
+permission-needed: true
+
+# How many second player attend for send message?
+send-time: 3.0

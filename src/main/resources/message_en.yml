@@ -1,0 +1,115 @@
+###################################################################################
+#                                                                                 #
+#                                  Chat Manager                                   #
+#                           Created By AnonymousStar02                            #
+#                                                                                 #
+###################################################################################
+
+# PlaceHolder guide
+#   %player% = player event
+#   %word% = spam word
+#
+#   No all message contains this placeholder. 
+#   If message contains a placeholder, there is of default.
+
+# User is op
+already-op: "&cYou are already op"
+
+# User is deop
+already-deop: "&cYou are already deop"
+
+# Chat muted message
+chat-is-muted: "&cGlobal chat is muted. You can't write."
+
+# Correct usage of command /clearchat
+clearchat-correct-usage: "&cCorerct Usage &e/clearchat <player|server>"
+
+# Player delete own chat
+cleared-own-chat: "&aYou delete own chat"
+
+# Player delete a player chat
+cleared-player-chat: "&aYou clear chat of &6%player%"
+
+# Server message when server chat are cleared
+cleared-server-chat: "&6%player% &acleared server chat"
+
+# Deop correct usage
+deop-correct-usage: "&cCorrect Usage: /deop <password>"
+
+# Deop password success insert
+deop-password-success: "&aYou are &cdeop"
+
+# Broadcast global mute chat message
+global-chat-muted: "&aGlobal chat are muted by &6%player%"
+
+# Broadcast global unmute chat message
+global-chat-unmuted: "&aGlobal chat are unmuted by &6%player%"
+
+# Player mute chat message
+have-muted-chat: "&aYou muted global chat"
+
+# Player unmute chat message
+have-unmuted-chat: "&aYou unmuted global chat"
+
+# Permission denied of command /clearchat "yournickname"
+no-clear-own-chat: "&cYou don't have permission to clear your chat"
+
+# Permission denied of command /clearchat "<player>"
+no-clear-player-chat: "&cYou don't have permission to clear chat an other player"
+
+# Permissions denied of command /clearchat "server"
+no-clear-server-chat: "&cYou don't have permission to clear server chat"
+
+# Player write quickly
+no-flood: "&cYou are writing quickly. You attend &e%second% &csecond"
+
+# Player repeat same message
+no-repeat-message: "&cYou don't repeat same message"
+
+# Player message contains a spam word
+no-swear: "&cYou don't write this word: &e%word%"
+
+# Negate permission to writeo on chat
+no-write: "&cYou don't have permission to write on chat"
+
+# Player message contains a ip
+no-write-ip: "&cYou don't have permission to write ip on chat"
+
+# Player message contains a url
+no-write-url: "&cYou don't have permission to write url on chat"
+
+# Op correct usage
+op-correct-usage: "&cCorrect Usage: /op <password>"
+
+# Op password error
+op-password-error: "&cWrong password"
+
+# Op password success insert
+op-password-success: "&aYou are &cOP"
+
+# OpOthers user already deop
+opother-already-deop: "&cUser &e%player% &cis already deop"
+
+# OpOthers user already op
+opother-already-op: "&cUser &e%player% &cis already op"
+
+# OpOthers user already deop
+opother-correct-deop: "&cUser &e%player% &cis now deop"
+
+# OpOthers user already op
+opother-correct-op: "&cUser &e%player% &cis now op"
+
+# OpOthers command correct usage
+opother-correct-usage: "&cCorrect usage: /opother <op|deop> <player>"
+
+# Permission denied message
+permission-denied: "&cYou don't have permission to execute this command"
+
+# Target message when your chat are cleared
+player-chat-has-cleared: "&aYour chat are cleared by &6%player%"
+
+# Player not found message
+player-not-found: "&cPlayer not found"
+
+# Reload plugin
+reload: "&aConfiguration are loaded"
