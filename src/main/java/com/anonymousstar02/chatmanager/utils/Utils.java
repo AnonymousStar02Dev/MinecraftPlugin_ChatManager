@@ -2,7 +2,7 @@ package com.anonymousstar02.chatmanager.utils;
 
 public class Utils {
 
-	private static boolean isAlphabetChar(char ch) {
+	public static boolean isAlphabetChar(char ch) {
 		switch(ch){
 			case 'a':
 			case 'b':
@@ -36,7 +36,7 @@ public class Utils {
 		}
 	}
 
-	private static boolean isNumber(char ch) {
+	public static boolean isNumber(char ch) {
 		switch(ch) {
 			case '0':
 			case '1':

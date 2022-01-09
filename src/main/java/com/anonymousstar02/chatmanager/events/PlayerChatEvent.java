@@ -4,8 +4,10 @@ import com.anonymousstar02.chatmanager.ChatManager;
 import com.anonymousstar02.chatmanager.utils.Messages;
 import com.anonymousstar02.chatmanager.utils.Permission;
 import com.anonymousstar02.chatmanager.utils.TranslateColor;
+import com.anonymousstar02.chatmanager.utils.Utils;
 import com.anonymousstar02.chatmanager.utils.enums.Config;
 import com.anonymousstar02.chatmanager.utils.enums.Message;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -117,12 +119,16 @@ public class PlayerChatEvent implements Listener, TranslateColor, Permission {
 			//anticaps
 			if(plugin.getMainConfig().getBoolean(Config.ANTI_CAPS.toString())) {
 				if(!hasPermissions(player,plugin.getPermissionService(),"chatmanager.bypass.anticaps")) {
-					char[] array = message.toCharArray();
-					for(int x = 0;x < array.length;x++) {
-						if(x == 0) array[x] = String.valueOf(array[x]).toUpperCase().charAt(0);
-						else array[x] = String.valueOf(array[x]).toLowerCase().charAt(0);
+					for(String word : message.split("\\s+")){
+						Player p = Bukkit.getPlayer(word);
+						if(p != null) continue;
+						message = message.replace(word,word.toLowerCase());
 					}
-					event.setMessage(String.valueOf(array));
+					char ch = message.charAt(0);
+					if(Utils.isAlphabetChar(ch)) message = message.replaceFirst(String.valueOf(ch),String.valueOf(ch).toUpperCase());
+					ch = message.charAt(message.length()-1);
+					if(ch != '!' && ch != '.' && ch != '?') message = message.concat(".");
+					event.setMessage(message);
 				}
 			}
 		}
