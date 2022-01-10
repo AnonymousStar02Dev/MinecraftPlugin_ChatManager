@@ -1,4 +1,4 @@
-package com.anonymousstar02.chatmanager.utils.enums;
+package com.anonymousstar02.chatmanager.enums;
 
 public enum Message{
 

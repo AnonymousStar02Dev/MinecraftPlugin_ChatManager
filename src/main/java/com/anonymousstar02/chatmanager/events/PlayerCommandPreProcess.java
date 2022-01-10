@@ -2,10 +2,10 @@ package com.anonymousstar02.chatmanager.events;
 
 import com.anonymousstar02.chatmanager.ChatManager;
 import com.anonymousstar02.chatmanager.commands.api.Command;
-import com.anonymousstar02.chatmanager.utils.Permission;
-import com.anonymousstar02.chatmanager.utils.TranslateColor;
-import com.anonymousstar02.chatmanager.utils.enums.Config;
-import com.anonymousstar02.chatmanager.utils.enums.Message;
+import com.anonymousstar02.chatmanager.Permission;
+import com.anonymousstar02.chatmanager.TranslateColor;
+import com.anonymousstar02.chatmanager.enums.Config;
+import com.anonymousstar02.chatmanager.enums.Message;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;

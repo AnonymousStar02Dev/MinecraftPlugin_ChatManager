@@ -1,4 +1,4 @@
-package com.anonymousstar02.chatmanager.utils;
+package com.anonymousstar02.chatmanager;
 
 import java.util.List;
 
@@ -30,12 +30,13 @@ public class Messages {
 	}
 	
 	public static boolean containsUrl(String message,List<String> urls) {
-		String[] words = message.split("\\s+");
-		for(String word : words) {
-			if(word.matches("(((http?|https|ftp|file)://)?(([Ww]){3}.)?([a-zA-Z0-9]+\\.)(([a-zA-Z0-9]+\\.){0,16})([a-zA-Z]+)(/(\\w|\\W|\\d|\\D)+){0,16})")) {
-				if(!urls.isEmpty()) for(String url : urls) if(word.equals(url)) return false;
-				return true;
+		if(message.matches("(((http?|https|ftp|file)://)?(([Ww]){3}.)?([a-zA-Z0-9]+\\.)(([a-zA-Z0-9]+\\.){0,16})([a-zA-Z]+)(/(\\w|\\W|\\d|\\D)+){0,16})")) {
+			if(!urls.isEmpty()) {
+				for(String url : urls) {
+					if(message.contains(url)) return false;
+				}
 			}
+			return true;
 		}
 		return false;
 	}

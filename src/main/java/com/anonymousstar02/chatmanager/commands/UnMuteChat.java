@@ -3,10 +3,10 @@ package com.anonymousstar02.chatmanager.commands;
 import java.io.IOException;
 
 import com.anonymousstar02.chatmanager.ChatManager;
-import com.anonymousstar02.chatmanager.utils.Permission;
-import com.anonymousstar02.chatmanager.utils.TranslateColor;
-import com.anonymousstar02.chatmanager.utils.enums.Config;
-import com.anonymousstar02.chatmanager.utils.enums.Message;
+import com.anonymousstar02.chatmanager.Permission;
+import com.anonymousstar02.chatmanager.TranslateColor;
+import com.anonymousstar02.chatmanager.enums.Config;
+import com.anonymousstar02.chatmanager.enums.Message;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

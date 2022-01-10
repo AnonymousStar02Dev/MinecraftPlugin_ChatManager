@@ -1,4 +1,4 @@
-package com.anonymousstar02.chatmanager.utils;
+package com.anonymousstar02.chatmanager;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

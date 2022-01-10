@@ -4,7 +4,7 @@ import com.anonymousstar02.chatmanager.commands.*;
 import com.anonymousstar02.chatmanager.events.PlayerChatEvent;
 import com.anonymousstar02.chatmanager.events.PlayerCommandPreProcess;
 import com.anonymousstar02.chatmanager.events.PlayerQuitEvent;
-import com.anonymousstar02.chatmanager.utils.enums.Config;
+import com.anonymousstar02.chatmanager.enums.Config;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -105,20 +105,20 @@ public final class ChatManager extends JavaPlugin{
     public void registerConfigs() {
         try {
             YamlFile tmp;
-            config = loadConfig(Configs.CONFIG.toString(),this);
-            message = loadMessages(Configs.MESSAGES.toString(),config.getString(Config.LOCALE.toString()),this);
+            config = loadConfig("config.yml",this);
+            message = loadMessages("message_{locale}.yml",config.getString(Config.LOCALE.toString()),this);
 
-            tmp = loadConfig(Configs.BLOCKED_WORDS.toString(), this);
+            tmp = loadConfig("blocked_words.yml", this);
             blocked_words = tmp.getStringList("words");
 
-            tmp = loadConfig(Configs.WHITELIST_COMMANDS.toString(), this);
+            tmp = loadConfig("whitelist_commands.yml", this);
             whitelist_commands = tmp.getStringList("commands");
 
-            tmp = loadConfig(Configs.ALLOWED_URLS.toString(), this);
+            tmp = loadConfig("allowed_urls.yml", this);
             allowed_urls = tmp.getStringList("urls");
 
-            File permissions_file = new File(this.getDataFolder(),Configs.PERMISSIONS.toString());
-            if(!permissions_file.exists()) saveResource(Configs.PERMISSIONS.toString(),false);
+            File permissions_file = new File(this.getDataFolder(),"permissions.yml");
+            if(!permissions_file.exists()) saveResource("permissions.yml",false);
 
         }catch(Exception e) {
             e.printStackTrace();
