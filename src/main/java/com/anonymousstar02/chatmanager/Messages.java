@@ -30,7 +30,7 @@ public class Messages {
 	}
 	
 	public static boolean containsUrl(String message,List<String> urls) {
-		if(message.matches("(((http?|https|ftp|file)://)?(([Ww]){3}.)?([a-zA-Z0-9]+\\.)(([a-zA-Z0-9]+\\.){0,16})([a-zA-Z]+)(/(\\w|\\W|\\d|\\D)+){0,16})")) {
+		if(message.matches("(([a-zA-Z]+://)?)(((\\w|\\d)+\\.)+)((\\w|\\d)+)((\\w|\\W|\\d|\\D)+)")) {
 			if(!urls.isEmpty()) {
 				for(String url : urls) {
 					if(message.contains(url)) return false;
