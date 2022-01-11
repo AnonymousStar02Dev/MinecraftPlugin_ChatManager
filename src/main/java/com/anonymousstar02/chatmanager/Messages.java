@@ -32,6 +32,7 @@ public class Messages {
 
 	/*
 	Old method to check url
+	Good but have fake positive
 	public static boolean isUrl(String str){
 		return str.matches("(([a-zA-Z]+://)?)(((\\w|-)+\\.)+)(\\w+)((\\d|\\D)+)");
 	}
