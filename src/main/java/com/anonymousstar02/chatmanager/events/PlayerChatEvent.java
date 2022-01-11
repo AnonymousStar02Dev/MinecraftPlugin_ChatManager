@@ -25,7 +25,8 @@ public class PlayerChatEvent implements Listener, TranslateColor, Permission {
 		
 		Player player = event.getPlayer();
 		String message = event.getMessage();
-		
+		String[] array = message.split("\\s+");
+
 		if(!hasPermissions(player,plugin.getPermissionService(),"chatmanager.*")) {
 			if(plugin.getMainConfig().getBoolean(Config.PERMISSION_NEEDED.toString())) {
 				if(!hasPermissions(player,plugin.getPermissionService(),"chatmanager.chat.allow")) {
@@ -95,7 +96,7 @@ public class PlayerChatEvent implements Listener, TranslateColor, Permission {
 			//controlla se il giocatore scrive un url in chat
 			if(plugin.getMainConfig().getBoolean(Config.ANTI_URL.toString())) {
 				if(!hasPermissions(player,plugin.getPermissionService(),"chatmanager.bypass.antiurl")) {
-					if(Messages.containsUrl(message,plugin.getAllowedUrls())) {
+					if(Messages.containsUrl(array,plugin.getAllowedUrls())) {
 						player.sendMessage(color(plugin.getMessagesConfig().getString(Message.NO_WRITE_URL.toString())));
 						event.setCancelled(true);
 						return;
@@ -118,7 +119,7 @@ public class PlayerChatEvent implements Listener, TranslateColor, Permission {
 			//anticaps
 			if(plugin.getMainConfig().getBoolean(Config.ANTI_CAPS.toString())) {
 				if(!hasPermissions(player,plugin.getPermissionService(),"chatmanager.bypass.anticaps")) {
-					for(String word : message.split("\\s+")){
+					for(String word : array){
 						Player p = Bukkit.getPlayer(word);
 						if(p != null) continue;
 						message = message.replace(word,word.toLowerCase());
