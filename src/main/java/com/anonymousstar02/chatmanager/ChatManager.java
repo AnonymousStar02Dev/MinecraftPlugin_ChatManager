@@ -6,6 +6,7 @@ import com.anonymousstar02.chatmanager.events.PlayerCommandPreProcess;
 import com.anonymousstar02.chatmanager.events.PlayerQuitEvent;
 import com.anonymousstar02.chatmanager.enums.Config;
 import net.milkbowl.vault.permission.Permission;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.simpleyaml.configuration.file.YamlFile;
@@ -94,12 +95,24 @@ public final class ChatManager extends JavaPlugin{
         registerCommands();
     }
 
+    @SuppressWarnings("")
     private void registerCommands() {
-        this.getCommand("cm-reload").setExecutor(new Reload(this));
-        this.getCommand("clearchat").setExecutor(new ClearChat(this));
-        this.getCommand("mutechat").setExecutor(new MuteChat(this));
-        this.getCommand("unmutechat").setExecutor(new UnMuteChat(this));
-        this.getCommand("opothers").setExecutor(new OpOther(this));
+        PluginCommand cmd;
+
+        cmd = this.getCommand("cm-reload");
+        if(cmd != null) cmd.setExecutor(new Reload(this));
+
+        cmd = this.getCommand("clearchat");
+        if(cmd != null) cmd.setExecutor(new ClearChat(this));
+
+        cmd = this.getCommand("mutechat");
+        if(cmd != null) cmd.setExecutor(new MuteChat(this));
+
+        cmd = this.getCommand("unmutechat");
+        if(cmd != null) cmd.setExecutor(new UnMuteChat(this));
+
+        cmd = this.getCommand("opothers");
+        if(cmd != null) cmd.setExecutor(new OpOther(this));
     }
 
     public void registerConfigs() {
