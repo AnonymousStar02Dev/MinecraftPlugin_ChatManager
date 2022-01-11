@@ -1,7 +1,5 @@
 package com.anonymousstar02.chatmanager;
 
-import java.io.IOException;
-import java.net.InetAddress;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,7 +30,6 @@ public class Messages {
 
 	/*
 	Old method to check url
-	Good but have fake positive
 	public static boolean isUrl(String str){
 		return str.matches("(([a-zA-Z]+://)?)(((\\w|-)+\\.)+)(\\w+)((\\d|\\D)+)");
 	}
@@ -42,22 +39,11 @@ public class Messages {
 		Matcher match = Pattern.compile("((\\w+\\.)+)(\\w+)").matcher(message);
 		while(match.find()){
 			String m = match.group();
-			try{
-				if(InetAddress.getByName(InetAddress.getByName(m).getHostAddress()).isReachable(250)){
-					return true;
-				}
-			}catch (IOException e){}
-			m = m.replaceAll("4","a");
-			m = m.replaceAll("3","e");
-			m = m.replaceAll("1","i");
-			m = m.replaceAll("0","o");
-			m = m.replaceAll("5","s");
-			m = m.replaceAll("6","g'");
-			try{
-				if(InetAddress.getByName(InetAddress.getByName(m).getHostAddress()).isReachable(250)){
-					return true;
-				}
-			}catch (IOException e){  }
+			for(String url : urls){
+				if(m.equals(url)) break;
+			}
+			if(Utils.validateUrl(m)) return true;
+			if(Utils.validateUrl(Utils.replaceDigToLet(m))) return true;
 		}
 		return false;
 	}
