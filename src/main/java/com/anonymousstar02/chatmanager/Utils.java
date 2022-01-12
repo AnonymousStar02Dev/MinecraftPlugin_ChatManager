@@ -54,8 +54,9 @@ public class Utils{
 			if(InetAddress.getByName(InetAddress.getByName(url).getHostAddress()).isReachable(250)){
 				return true;
 			}
-		}catch (IOException e){  }
-		finally{ return false; }
+		}catch (IOException ignored) {
+		}
+		return false;
 	}
 
 }
